@@ -20,9 +20,13 @@
       </template>
     </users-list>
     <div>{{ (message,message1) | capitalize(message,message1) }}</div>
-    <new-comp :users = users>
-      <template slot="names"></template>
-    </new-comp>
+    <div v-for="(user, index) in users" :key="index">
+      <NewComp>
+        <template slot="username">{{ user.name + ' ' }}</template>
+        <template>middle template</template>
+        <template slot="exit"> {{ user | exitCheck }} </template>
+      </NewComp>
+    </div>
   </div>
 </template>
 
@@ -77,13 +81,7 @@ export default {
       value = value.toString();
       return value.charAt(0).toUpperCase() + value.slice(1);
     },
-    exitCheck: function(user) {
-      if(user.isGoingToExit == false) {
-        return `${user.name} ---- no exit for u`
-      } else {
-        return `${user.name} ----- hello exit`
-      }
-    }
+    
     
   }
 };

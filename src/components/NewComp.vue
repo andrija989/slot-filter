@@ -1,9 +1,10 @@
+    
 <template>
-    <div>
-        <div v-for="(user,index) in users" :key="index">
-        <slot :user="user">{{ user.name }}</slot>
-    </div>
-    </div>
+  <div>
+    <slot name="username"></slot>
+    <slot></slot>
+    <slot name="exit"></slot>
+  </div>
 </template>
 
 <script>
